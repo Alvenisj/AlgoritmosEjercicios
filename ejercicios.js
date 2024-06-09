@@ -99,7 +99,7 @@
 // function selectionSort(arr) {
 //   let n = arr.length;
 //   let min = 0;
-//   for (let i = 0; i < n; i++) {
+//   for (let i = 0; i < n - 1; i++) {
 //     min = i;
 //     for (let j = i + 1; j < n; j++) {
 //       if (arr[j] < arr[min]) {
@@ -108,7 +108,9 @@
 //     }
 
 //     // INTERCAMBIO DE VARIABLE
-//     [arr[i], arr[min]] = [arr[min], arr[i]];
+//     if (min !== i) {
+//       [arr[i], arr[min]] = [arr[min], arr[i]];
+//     }
 //   }
 
 //   return arr;
@@ -673,7 +675,7 @@
 //   const filteredProducts = products.filter((product) => {
 //     return (
 //       (product.stock > 0 && product.isNew) ||
-//       (product.rating && product.reviews)
+//       (product.rating && product.reviews >= 10 )
 //     );
 //   });
 
@@ -698,3 +700,147 @@
 
 // **************************************************************
 
+/**
+ * Función que devuelve los números pares dentro de un rango especificado.
+ * @param {number} inicio - El primer número del rango.
+ * @param {number} fin - El último número del rango.
+ * @returns {arrNumberPair[]} - Un array con los números pares en el rango dado.
+ * @throws {Error} - Si los argumentos no son números o si inicio es mayor que fin.
+ */
+
+// function getNumbersPair(inicio, fin) {
+//   if (typeof inicio !== "number" || typeof fin !== "number") {
+//     throw new Error("Los argumentos de inicio y fin DEBEN ser números");
+//   }
+
+//   if (inicio <= 0) {
+//     throw new Error("El argumento inicio DEBE ser mayor a cero");
+//   }
+
+//   if (inicio > fin) {
+//     throw new Error("El argumento de inicio DEBE ser menor al argumento fin");
+//   }
+
+//   const divisible = (iteration, multiplo) => !(iteration % multiplo);
+//   let arrNumberPair = [];
+//   for (let i = inicio; i <= fin; i++) {
+//     if (divisible(i, 2)) {
+//       arrNumberPair.push(i);
+//     }
+//   }
+
+//   return arrNumberPair;
+// }
+
+// const inicio = 1;
+// const fin = 20;
+
+// try {
+//   const printArray = getNumbersPair(inicio, fin);
+//   console.log("Los números pares son: ", printArray);
+// } catch (error) {
+//   console.log(error.message);
+// }
+
+/**
+ * Función que devuelve los números impares dentro de un rango especificado.
+ * @param {number} inicio - El primer número del rango.
+ * @param {number} fin - El último número del rango.
+ * @returns {number[]} - Un array con los números impares en el rango dado.
+ * @throws {Error} - Si los argumentos no son números o si inicio es mayor que fin.
+ */
+
+// function getNumberOdd(inicio, fin) {
+//   if (typeof inicio !== "number" || typeof fin !== "number") {
+//     throw new Error("Los argumentos inicio y fin DEBEN ser números");
+//   }
+//   if (inicio <= 0) {
+//     throw new Error("El argumento de inicio DEBE ser mayor a cero...");
+//   }
+//   if (inicio > fin) {
+//     throw new Error("El argumento inicio DEBE ser menor al argumento fin");
+//   }
+
+//   const divisible = (iteration, multiplo) => iteration % multiplo;
+//   let arrNumberOdd = [];
+//   for (let i = inicio; i <= fin; i++) {
+//     if (divisible(i, 2)) {
+//       arrNumberOdd.push(i);
+//     }
+//   }
+
+//   return arrNumberOdd;
+// }
+
+// const inicio = 1;
+// const fin = 20;
+// try {
+//   const printNumber = getNumberOdd(inicio, fin);
+//   console.log("Los números impares son: ", printNumber);
+// } catch (error) {
+//   console.log(error.message);
+// }
+
+// Función que filtra y selecciona productos que se deben mostrar en la tienda en línea
+// basado en varios criterios.
+// CRITERIOS: stock > 0 &&
+//            rating >= 4 &&
+//            allowedCategories = ["Electronics", "Groceries", "Clothing"]; &&
+//           ( isFeatured || price < maxPrice )
+
+// ************************************************************
+
+// Función que filtra y selecciona productos que se deben mostrar en la tienda en línea
+// basado en varios criterios.
+// CRITERIOS: stock > 0 &&
+//            rating >= 4 &&
+//            allowedCategories = ["Electronics", "Groceries", "Clothing"]; &&
+//           ( isFeatured || price < maxPrice )
+
+// **************************************************************
+// Ejercicio: Validar paréntesis
+// Enunciado
+// Dada una cadena que contiene solo los caracteres '(', ')', '{', '}', '[' y ']', escribe una función que determine si la cadena de entrada es válida. Una cadena de entrada es válida si:
+
+// Los paréntesis abiertos deben cerrarse con el mismo tipo de paréntesis.
+// Los paréntesis abiertos deben cerrarse en el orden correcto.
+// Cada paréntesis cerrado tiene un paréntesis abierto correspondiente del mismo tipo.
+// Por ejemplo:
+// "()" es válido.
+// "()[]{}" es válido.
+// "(]" no es válido.
+// "([)]" no es válido.
+// "{[]}" es válido.
+
+// SOLUCIÓN
+// function isValid(str) {
+//   let n = str.length;
+//   const stack = [];
+//   const map = {
+//     "(": ")",
+//     "{": "}",
+//     "[": "]",
+//   };
+//   for (let i = 0; i < n; i++) {
+//     const char = str[i];
+//     if (map[char]) {
+//       stack.push(char);
+//     } else {
+//       const topElement = stack.length === 0 ? "#" : stack.pop();
+//       if (map[topElement] !== char) {
+//         return false;
+//       }
+//     }
+//   }
+
+//   return stack.length === 0;
+// }
+
+// const print = isValid("([)]");
+// console.log(print);
+// Ejemplos de uso
+// isValid("()")); // true
+// isValid("()[]{}")); // true
+// isValid("(]")); // false
+// isValid("([)]")); // false
+// isValid("{[]}")); // true
